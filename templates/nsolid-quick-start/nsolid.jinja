@@ -1,0 +1,104 @@
+{% import "path_utils.jinja" as path_utils with context %}
+
+{% set nsolidStorageImage = "https://www.googleapis.com/compute/v1/projects/nodesource-public/global/images/nsolid-platform-3-0-4-1516897505" %}
+{% set nsolidRuntimeImage = "https://www.googleapis.com/compute/v1/projects/nodesource-public/global/images/nsolid-runtime-3-0-4-1516897527" %}
+
+{% set project = env["project"] %}
+{% set deployment = env["deployment"] %}
+{% set name = "%s-vm-tmpl" % env["name"] %}
+{% set instanceName = "%s-vm" % deployment %}
+{% set zone = properties["zone"] %}
+{% set machineType = properties["machineType"] %}
+{% set network = path_utils.networkPath(properties["network"]) %}
+{% set subnetwork = properties["subnetwork"] %}
+{% set bootDiskType = properties["bootDiskType"] %}
+{% set bootDiskSizeGb = properties["bootDiskSizeGb"] %}
+{% set hasExternalIP = properties["externalIP"] != "None" %}
+
+{% set package = "nsolid" %}
+{% set consoleInstanceName = "%s-console" % deployment %}
+{% set numRuntimes = properties["numRuntimes"] %}
+{% set runtimeType = properties["runtimeType"] %}
+{% set runtimeDiskType = properties["runtimeDiskType"] %}
+{% set runtimeDiskSizeGb = properties["runtimeDiskSizeGb"] %}
+
+{# Software status only works if the VM has an external IP. #}
+{% set enableStatusWaiter = hasExternalIP %}
+{% set canIpForward = properties["ipForward"] == "On" %}
+
+resources:
+  - name: dashboard
+    type: vm_instance.py
+    properties:
+      instanceName: {{ consoleInstanceName }}
+      sourceImage: {{ nsolidStorageImage }}
+      zone: {{ zone }}
+      machineType: {{ machineType }}
+      network: {{ network }}
+      {% if subnetwork %}
+      subnetwork: {{ subnetwork }}
+      {% endif %}
+      bootDiskType: {{ bootDiskType }}
+      bootDiskSizeGb: {{ bootDiskSizeGb }}
+      hasExternalIP: {{ hasExternalIP }}
+      canIpForward: {{ canIpForward }}
+      serviceAccounts:
+        - email: default
+          scopes:
+            - 'https://www.googleapis.com/auth/cloud.useraccounts.readonly'
+            - 'https://www.googleapis.com/auth/devstorage.read_only'
+            - 'https://www.googleapis.com/auth/logging.write'
+            - 'https://www.googleapis.com/auth/monitoring.write'
+      tags:
+        items:
+          - {{ deployment }}-tcp-80
+  {% if properties["enableTcp80"] %}
+  - name: {{ deployment }}-tcp-80
+    type: compute.v1.firewall
+    properties:
+      network: {{ network }}
+      sourceRanges: ["0.0.0.0/0"]
+      targetTags: ["{{ deployment }}-tcp-80"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["80"]
+  {% endif %}
+
+  {% if numRuntimes > 0 %}
+  - type: vm_multiple_instances.py
+    name: {{ deployment }}-vm
+    properties:
+      instanceName: {{ instanceName }}
+      numberOfVMReplicas: {{ numRuntimes }}
+      sourceImage: {{ nsolidRuntimeImage }}
+      zone: {{ zone }}
+      machineType: {{ runtimeType }}
+      network: {{ network }}
+      {% if subnetwork %}
+      subnetwork: {{ subnetwork }}
+      {% endif %}
+      canIpForward: {{ canIpForward }}
+      bootDiskType: {{ runtimeDiskType }}
+      bootDiskSizeGb: {{ runtimeDiskSizeGb }}
+      serviceAccounts:
+        - email: default
+          scopes:
+            - 'https://www.googleapis.com/auth/cloud.useraccounts.readonly'
+            - 'https://www.googleapis.com/auth/devstorage.read_only'
+            - 'https://www.googleapis.com/auth/logging.write'
+            - 'https://www.googleapis.com/auth/monitoring.write'
+      metadata:
+        items:
+          - key: NSOLID_SERVER
+            value: "{{ consoleInstanceName|string }}"
+  {% endif %}
+
+outputs:
+  - name: deployment
+    value: {{ deployment }}
+  - name: vmSelfLink
+    value: $(ref.{{ consoleInstanceName }}.selfLink)
+  - name: project
+    value: {{ project }}
+  - name: vmName
+    value: {{ deployment }}-console

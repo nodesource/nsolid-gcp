@@ -7,3 +7,7 @@ N|Solid is a fully-compatible enhanced Node.js platform built for mission-critic
 ## Getting Started
 
 content
+
+## Image List
+
+You can also use our N|Solid Images for your own projects. See [IMAGE-LIST.md](IMAGE-LIST.md) for a full list of Image IDs in every region.
