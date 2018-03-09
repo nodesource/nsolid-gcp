@@ -12,7 +12,7 @@ If you don't already have an N|Solid license key, start a [free trial](https://p
 
 Follow these steps to use the Deployment Manager templates in `gcp-nsolid`:
 
-1. Clone this repository to your computer.
+1. Clone this repository to your computer:
 ```
 $ git clone https://github.com/nodesource/gcp-nsolid
 ```
