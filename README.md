@@ -2,23 +2,25 @@
 
 # N|Solid on GCP
 
-N|Solid is a fully-compatible enhanced Node.js platform built for mission-critical applications. N|Solid enables organizations to build, manage, secure, and analyze Node.js applications.
+[Google Cloud Platform](https://cloud.google.com/) (GCP) lets you build and host applications and websites, store data, and analyze data on Google's scalable infrastructure. Deploy your [N|Solid](https://nodesource.com/products/nsolid) instances to the GCP for cloud access to the only Node.js platform built for mission-critical applications.
 
 ## Getting Started
 
-Easily run N|Solid on GCP using our [Deployment Manager Templates](https://cloud.google.com/deployment-manager/). You can find a list of templates and their descriptions in the templates README.md.
+Easily run N|Solid on GCP using our [Deployment Manager](https://cloud.google.com/deployment-manager/) templates. You can find a list of templates and their descriptions in the templates [README.md](/templates/README.md).
 
+Follow these steps to use the Deployment Manager templates in `gcp-nsolid`:
+
+1. Clone this repository to your computer:
 ```
-Steps to use the Deployment Manager templates in gcp-nsolid
+$ git clone https://github.com/nodesource/gcp-nsolid
+```
+2. Find the template you want to run in the `/templates` folder.
 
-1.) Clone this repository to your computer.
-
-2.) Find the template you want to run in the `/templates` folder.
-
-3.) Execute the `gcloud` Deployment Manager command to create the N|Solid Deployment.
-
+3. Execute the `gcloud` Deployment Manager command to create the N|Solid Deployment:
+```
 $ gcloud deployment-manager deployments create nsolid --config templates/nsolid-quick-start/nsolid.yaml
 ```
+
 
 ## Image List
 
