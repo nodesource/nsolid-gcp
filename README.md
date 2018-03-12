@@ -2,7 +2,7 @@
 
 # N|Solid on GCP
 
-[Google Cloud Platform](https://cloud.google.com/) (GCP) lets you build and host applications and websites, store data, and analyze data on Google's scalable infrastructure. Deploy your [N|Solid](https://nodesource.com/products/nsolid) instances to the GCP for cloud access to the only Node.js platform built for mission-critical applications.
+[Google Cloud Platform](https://cloud.google.com/) (GCP) lets you build and host applications and websites, store data, and analyze data on Google's scalable infrastructure. Deploy your [N|Solid](https://nodesource.com/products/nsolid) instances to GCP for cloud access to the only Node.js platform built for mission-critical applications.
 
 ## Getting Started
 
