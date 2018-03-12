@@ -52,6 +52,7 @@ resources:
       tags:
         items:
           - {{ deployment }}-tcp-80
+          - {{ deployment }}-tcp-9000
   {% if properties["enableTcp80"] %}
   - name: {{ deployment }}-tcp-80
     type: compute.v1.firewall
@@ -62,6 +63,22 @@ resources:
       allowed:
         - IPProtocol: TCP
           ports: ["80"]
+  {% endif %}
+
+  {% if properties["enableTcp9000"] %}
+  - name: {{ deployment }}-tcp-9000
+    type: compute.v1.firewall
+    properties:
+      network: {{ network }}
+      sourceRanges: ["0.0.0.0/0"]
+      targetTags: ["{{ deployment }}-tcp-9000"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["9001"]
+        - IPProtocol: TCP
+          ports: ["9002"]
+        - IPProtocol: TCP
+          ports: ["9003"]
   {% endif %}
 
   {% if numRuntimes > 0 %}

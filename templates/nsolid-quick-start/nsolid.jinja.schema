@@ -82,6 +82,9 @@ properties:
   enableTcp80:
     type: boolean
     default: True
+  enableTcp9000:
+    type: boolean
+    default: True
   numRuntimes:
     type: integer
     default: 1
