@@ -1,0 +1,8 @@
+imports:
+- name: path_utils.jinja
+  path: common/path_utils.jinja
+- path: nsolid-runtime.jinja
+
+resources:
+- name: nsolid-runtime
+  type: nsolid-runtime.jinja

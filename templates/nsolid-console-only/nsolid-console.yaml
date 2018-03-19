@@ -1,0 +1,8 @@
+imports:
+- name: path_utils.jinja
+  path: common/path_utils.jinja
+- path: nsolid-console.jinja
+
+resources:
+- name: nsolid-console
+  type: nsolid-console.jinja
