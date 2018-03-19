@@ -1,10 +1,10 @@
 ![N|Solid](/images/nsolid-gcp.png)
 
-# N|Solid on GCP
+# NodeSource N|Solid on GCP
 
 [Google Cloud Platform](https://cloud.google.com/) (GCP) lets you build and host applications and websites, store data, and analyze data on Google's scalable infrastructure. Deploy your [N|Solid](https://nodesource.com/products/nsolid) instances to GCP for cloud access to the only Node.js platform built for mission-critical applications.
 
-## Getting Started
+## Getting Started with N|Solid on GCP
 
 Easily run N|Solid on GCP using our [Deployment Manager](https://cloud.google.com/deployment-manager/) templates. You can find a list of templates and their descriptions in the templates [README.md](/templates/README.md).
 
@@ -22,6 +22,6 @@ $ gcloud deployment-manager deployments create nsolid --config templates/nsolid-
 ```
 
 
-## Image List
+## N|Solid Image List on GCP
 
 You can also use our N|Solid Images for your own projects. See [IMAGE-LIST.md](IMAGE-LIST.md) for a full list of Image IDs.
