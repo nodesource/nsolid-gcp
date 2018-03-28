@@ -11,11 +11,11 @@ If you don't already have a license key, please visit the NodeSource website to 
 
 Easily run N|Solid on GCP using our [Deployment Manager](https://cloud.google.com/deployment-manager/) templates. You can find a list of templates and their descriptions in the [README.md](/templates/README.md).
 
-Follow these steps to use the Deployment Manager templates in `gcp-nsolid`:
+Follow these steps to use the Deployment Manager templates in `nsolid-gcp`:
 
 1. Clone this repository to your computer:
 ```
-$ git clone https://github.com/nodesource/gcp-nsolid
+$ git clone https://github.com/nodesource/nsolid-gcp
 ```
 2. Find the template you want to run in the `/templates` folder.
 
