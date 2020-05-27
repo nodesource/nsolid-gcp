@@ -3,11 +3,11 @@ import json
 import shutil
 import os
 
-nsolidVersion = raw_input("N|Solid Version:\n")
-consolePrevious = raw_input("N|Solid Console Previous Image:\n")
-runtimePrevious = raw_input("N|Solid Runtime Previous Image:\n")
-consoleNew = raw_input("N|Solid Console New Image:\n")
-runtimeNew = raw_input("N|Solid Runtime New Image:\n")
+nsolidVersion = input("N|Solid Version:\n")
+consolePrevious = input("N|Solid Console Previous Image:\n")
+runtimePrevious = input("N|Solid Runtime Previous Image:\n")
+consoleNew = input("N|Solid Console New Image:\n")
+runtimeNew = input("N|Solid Runtime New Image:\n")
 print("\n")
 
 # IMAGE-LIST.md update
