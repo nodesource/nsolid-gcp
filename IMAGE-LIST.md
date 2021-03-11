@@ -6,6 +6,7 @@ All Image Names are preceded by: `https://www.googleapis.com/compute/v1/projects
 
 | NSolid Version |          Console Image          |         Runtime Image           |
 |----------------|---------------------------------|---------------------------------|
+|   **4.5.0**    | `nsolid-console-450-1615481783` | `nsolid-runtime-450-1615481793` |
 |   **4.4.3**    | `nsolid-console-443-1614125577` | `nsolid-runtime-443-1614125573` |
 |   **4.4.2**    | `nsolid-console-442-1612806114` | `nsolid-runtime-442-1612806120` |
 |   **4.4.1**    | `nsolid-console-441-1609859145` | `nsolid-runtime-441-1609859142` |
